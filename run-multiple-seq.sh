@@ -1,10 +1,12 @@
 #!/bin/bash
 
+set -euo pipefail
+
 COUNT="${1:-1}"
 
-let total=0
+total=0
 
-for i in `seq 1 $COUNT`
+for i in $(seq 1 "$COUNT")
 do
   LOG="output/fc-sb0-log"
   rm -f $LOG

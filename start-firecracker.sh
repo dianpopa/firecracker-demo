@@ -1,4 +1,7 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -euo pipefail
+
 SB_ID="${1:-0}" # Default to sb_id=0
 
 FC_BINARY="$PWD/resources/firecracker"
@@ -34,7 +37,7 @@ logfile="$PWD/output/fc-sb${SB_ID}-log"
 #metricsfile="$PWD/output/fc-sb${SB_ID}-metrics"
 metricsfile="/dev/null"
 
-touch $logfile
+touch "$logfile"
 
 # Setup TAP device that uses proxy ARP
 MASK_LONG="255.255.255.252"
@@ -53,7 +56,7 @@ KERNEL_BOOT_ARGS="${KERNEL_BOOT_ARGS} ip=${FC_IP}::${TAP_IP}:${MASK_LONG}::eth0:
 
 # Start Firecracker API server
 rm -f "$API_SOCKET"
-"${FC_BINARY}" --api-sock "$API_SOCKET" --id "${SB_ID}" --boot-timer >> $logfile &
+"${FC_BINARY}" --api-sock "$API_SOCKET" --id "${SB_ID}" --boot-timer >> "$logfile" &
 
 sleep 0.015s
 
