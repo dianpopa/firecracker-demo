@@ -6,7 +6,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 TEST_RES="$SCRIPT_DIR/../resources"
 S3_BUCKET="spec.ccfc.min"
 TARGET="$(uname -m)"
-FC_VERSION="v1.0.0"
+FC_VERSION="v1.1.2"
 
 ensure_firecracker() {
     file_path="$TEST_RES/firecracker"
